@@ -2,8 +2,8 @@
 
 on:
   schedule:
-    - cron: "0 0 * * *"
-  workflow_dispatch:
+    - cron: "0 0 * * *"   # প্রতিদিন মধ্যরাতে রান হবে
+  workflow_dispatch:       # ম্যানুয়ালি ট্রিগারও সম্ভব
 
 jobs:
   generate:
@@ -11,17 +11,17 @@ jobs:
     timeout-minutes: 10
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      # Generate Snake animation SVG directly in repo root
-      - uses: Platane/snk@v3
+      - name: Generate Snake animation SVG
+        uses: Platane/snk@v3
         with:
           github_user_name: HomayraHeme
           github_token: ${{ secrets.GITHUB_TOKEN }}
           outputs: github-contribution-grid-snake.svg
 
-      # Commit & push SVG
-      - name: Commit Snake SVG
+      - name: Commit & push SVG
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
