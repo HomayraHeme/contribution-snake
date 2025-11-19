@@ -2,14 +2,12 @@
 
 on:
   schedule:
-    - cron: "0 0 * * *"   # প্রতিদিন মধ্যরাতে রান হবে
-  workflow_dispatch:       # ম্যানুয়ালি ট্রিগারও সম্ভব
+    - cron: "0 0 * * *"   # প্রতিদিন মধ্যরাতে run হবে
+  workflow_dispatch:       # ম্যানুয়ালি trigger করা যাবে
 
 jobs:
   generate:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
